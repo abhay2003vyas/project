@@ -83,27 +83,6 @@
         </div>
     </nav>
     <div class="login-container">
-        <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            require 'connect.php'; // Include the database connection
-
-            $username = $_POST['username'];
-            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-            $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ss", $username, $password);
-
-            if ($stmt->execute()) {
-                echo "<p>New record created successfully</p>";
-            } else {
-                echo "<p>Error: " . $sql . "<br>" . $conn->error . "</p>";
-            }
-
-            $stmt->close();
-            $conn->close();
-        }
-        ?>
         <form class="login-form" action="index.php" method="POST">
             <h2>Login</h2>
             <div class="input-group">
